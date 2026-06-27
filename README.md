@@ -1,34 +1,64 @@
-# ML & DS Flashcards
+# Flashcards
 
-A mobile-friendly flashcard web app for learning Machine Learning & Data Science concepts. Tinder-style swipe UX, runs entirely in the browser, no backend.
+A small collection of mobile-friendly flashcard web apps for technical study. Swipe-based, runs entirely in the browser, no backend. A landing page ties the decks together.
 
-**167 cards** — 145 numbered concept cards across 14 sections, plus 22 hyperparameter & metric reference cards.
+**Decks (401 cards total):**
+
+- **Machine Learning & Data Science** — 167 cards, 14 sections
+- **ML & Data Engineering** — 120 cards, 14 sections
+- **SQL** — 114 cards, 13 sections
 
 ## Features
 
-- **Tap to flip** — front shows the concept, back shows "What it is" + an example.
+- **Tap to flip** — front shows the concept, back shows "What it is" + an example (reference cards show a quick-reference table).
 - **Swipe to study** — swipe right (or ✓) = got it, swipe left (or ✗) = review later.
-- **Progress saved** — your known cards persist in the browser (localStorage); no login, no server.
-- **Search by number** — jump straight to any card by its number.
-- **Section filter** — focus on one topic (Neural Networks, NLP, Econometrics, etc.).
-- **Shuffle** and keyboard shortcuts (← review, → got it, space to flip) for desktop.
+- **Review / Known / New trays** — filter to just the pile you want to study.
+- **Search** — jump to any card by number, or search by keyword (matches are highlighted).
+- **Undo** — reverse the last swipe.
+- **Resume** — reopens where you left off; progress is saved per deck in the browser (localStorage), no login or server.
+- Works on phone and desktop; keyboard shortcuts on desktop (← review, → got it, space flip, Z undo).
 
-## Run it locally
+## Project structure
 
-Just open `index.html` in any browser (Chrome or Safari on phone, or desktop). That's it — everything is in one file.
+```
+index.html          landing page (lists every deck)
+ml-ds.html          Machine Learning & Data Science
+mle-de.html         ML & Data Engineering
+sql.html            SQL
+build.py            generator: PPTX → deck HTML + landing page
+deck_template.html  shared design used for every deck
+*.pptx              source PowerPoint decks (input for build.py)
+ADDING_DECKS.md     how to add or hand-write new decks
+```
+
+The four HTML files are what gets served. `build.py`, `deck_template.html`, and the `.pptx` sources are kept so any deck can be regenerated or restyled.
+
+## Run locally
+
+Open `index.html` in any browser, or open a deck file directly. Everything is self-contained.
+
+## Rebuild from PowerPoint
+
+```bash
+pip install python-pptx
+python3 build.py
+```
+
+Regenerates every deck listed in `build.py` plus `index.html`. See **ADDING_DECKS.md** for adding a new deck.
 
 ## Deploy free on GitHub Pages
 
-1. Create a free account at [github.com](https://github.com).
-2. Click **New repository**, name it (e.g. `ml-flashcards`), set it **Public**, click **Create**.
-3. On the repo page, click **Add file → Upload files**, drag in this `index.html`, and **Commit**.
-4. Go to **Settings → Pages**, under *Source* pick **Deploy from a branch**, choose `main` / `root`, **Save**.
-5. Wait ~1 minute. Your link appears at the top of the Pages settings: `https://<your-username>.github.io/ml-flashcards/`
+1. Create a free **public** repo on [github.com](https://github.com).
+2. Upload the project files (drag them into **Add file → Upload files**, then commit).
+3. **Settings → Pages → Deploy from a branch → `main` / root → Save.**
+4. After ~1 minute your site is live at `https://<your-username>.github.io/<repo>/`.
 
-Share that link — it works on any phone.
-
-> Note: the file must be named **`index.html`** for GitHub Pages to serve it automatically.
+Share that link — it opens the landing page, and every deck works on any phone.
 
 ## Cost
 
 Free. GitHub Pages is free for public repositories.
+
+## License
+
+MIT — see `LICENSE`.
