@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs and temp
+*.log
+.cache/
+tmp/
+
+# Dependencies (not used here, but safe to keep)
+node_modules/
+
+# Source PowerPoint deck (kept local, not needed for the site)
+*.pptx
